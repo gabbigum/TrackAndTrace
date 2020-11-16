@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TrackAndTrace
+namespace BusinessObjects.utilities
 {
-    class UIDGenerator
+    public class UIDGenerator
     {
         private static readonly Random random = new Random();
         public static String generateID(int size)
