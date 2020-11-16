@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLayer.Storage
+namespace BusinessObjects.TrackAndTrace
 {
-    class DataStorage
+    class UserEvent
     {
-
-
     }
 }

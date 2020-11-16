@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLayer.Storage
+namespace BusinessObjects.Enums
 {
-    class DataStorage
+    enum LocationType
     {
-
-
+        shop,
+        restaurant,
+        cafe,
+        other
     }
 }
