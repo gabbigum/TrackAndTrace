@@ -55,6 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataStorage.cs" />
+    <Compile Include="Location.cs" />
+    <Compile Include="Person.cs" />
+    <Compile Include="TrackAndTraceAPI.cs" />
+    <Compile Include="TrackAndTraceService.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

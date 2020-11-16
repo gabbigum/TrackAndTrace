@@ -24,5 +24,17 @@ namespace TrackAndTrace
         {
             InitializeComponent();
         }
+
+        private void btnAddIndividual_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAddNewLocation_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
     }
 }
