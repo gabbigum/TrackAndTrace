@@ -9,6 +9,7 @@ namespace BusinessObjects.TrackAndTrace
 {
     interface TrackAndTraceAPI
     {
+
         bool addNewIndividual(String firstName, String lastName, String phoneNumber);
         bool addNewLocation(String locationName, String address, String locationType);
 

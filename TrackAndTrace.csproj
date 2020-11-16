@@ -63,6 +63,7 @@
     <Compile Include="Person.cs" />
     <Compile Include="TrackAndTraceAPI.cs" />
     <Compile Include="TrackAndTraceService.cs" />
+    <Compile Include="UIDGenerator.cs" />
     <Compile Include="UserEvent.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
