@@ -4,26 +4,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessObjects.utilities
+namespace BusinessObjects.Utilities
 {
     public class UIDGenerator
     {
-        private static readonly Random random = new Random();
-        public static String generateID(int size)
+        
+        private static UIDGenerator instance;
+        public int UniqueID { get; private set; }
+
+        private UIDGenerator()
         {
-            StringBuilder builder = new StringBuilder(size);
+            UniqueID = 1;
+        }
 
-            // offset is a single Unicode character  
-            char offset = 'A';
-            const int lettersOffset = 26; // A...Z or a..z: length=26  
-
-            for (int i = 0; i < size; i++)
+        public static UIDGenerator Instance
+        {
+            get
             {
-                char randomChar = (char)random.Next(offset, offset + lettersOffset);
-                builder.Append(randomChar);
+                if (instance == null)
+                {
+                    instance = new UIDGenerator();
+                }
+                return instance;
             }
 
-            return builder.ToString();
+        }
+
+        public int nextUniqueID()
+        {
+            return UniqueID += 1;
         }
     }
 }
