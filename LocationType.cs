@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessObjects.Enums
 {
-    enum LocationType
+    public enum LocationType
     {
         shop,
         restaurant,
