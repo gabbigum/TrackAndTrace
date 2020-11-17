@@ -4,28 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BusinessObjects.Enums;
+using BusinessObjects.Utilities;
 
 
 namespace BusinessObjects.Entities
 {
-    class Location
+    public class Location
     {
-        private String locationName;
-        private String address;
-        private String locationID;
-        private LocationType locationType;
+        private String LocationName { get; }
+        private String Address { get; }
+        private int LocationID { get; }
+        private String LocationType { get; }
 
-        public Location(String locationName, String address, LocationType locationType)
+        public Location(String locationName, String address, String locationType)
         {
-            this.locationName = locationName;
-            this.address = address;
-            this.locationType = locationType;
+            this.LocationName = locationName;
+            this.Address = address;
+            this.LocationType = locationType;
+            LocationID = UIDGenerator.Instance.nextUniqueID();
         }
-
-        public String LocationName { get; }
-        public String Address { get; }
-        public String LocationID { get; }
-        public LocationType LocationType { get; }
+        
     }
 }
 
