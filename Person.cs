@@ -16,12 +16,21 @@ namespace BusinessObjects.Entities
         public String PhoneNumber { get; }
 
 
-        public Person(String firstName, String lastName, String phoneNumber)
+        public Person(String firstName, String lastName, String phoneNumber, bool hasID = true)
         {
             this.FirstName = firstName;
             this.LastName = lastName;
             this.PhoneNumber = phoneNumber;
-            this.UserID = UIDGenerator.Instance.nextUniqueID();
+            //don't create new id everytime a person is created
+            if (!hasID)
+            {
+                this.UserID = UIDGenerator.Instance.nextUniqueID();
+            }
+        }
+
+        public string toString()
+        {
+            return UserID + "," + FirstName + "," + LastName + "," + PhoneNumber;
         }
        
     }
