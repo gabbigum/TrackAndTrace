@@ -11,8 +11,15 @@ namespace DataLayer.Storage
 {
     public class DataStorage
     {
-        public static string DATA_FOLDER_PATH = @"C:\TrackAndTraceData";
+        public static string USERS_HEADER_TEXT = "User ID,First Name,Last Name,Phone Number";
+        public static string LOCATIONS_HEADER_TEXT = "Location ID,Location Name,Address,Location Type";
+        public static string USER_EVENTS_HEADER_TEXT = "Person 1,Person 2,Location ID,Date";//not confirmed
+
         public static string USER_EVENTS_FILE = @"C:\TrackAndTraceData\userevents.csv";
+        public static string USERS_FILE = @"C:\TrackAndTraceData\users.csv";
+        public static string LOCATIONS_FILE = @"C:\TrackAndTraceData\locations.csv";
+
+
         public Dictionary<String, Person> Users { get; }
 
         public Dictionary<String, Location> Locations { get; }
