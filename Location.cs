@@ -13,7 +13,7 @@ namespace BusinessObjects.Entities
     {
         private String LocationName { get; }
         private String Address { get; }
-        private int LocationID { get; }
+        public int LocationID { get; }
         private String LocationType { get; }
 
         public Location(String locationName, String address, String locationType, bool hasID = false)
