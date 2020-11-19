@@ -77,10 +77,10 @@ namespace DataLayer.IO
             if (!File.Exists(DataStorage.USER_EVENTS_FILE))
             {
                 using (StreamWriter streamWriter = new StreamWriter(DataStorage.USER_EVENTS_FILE, true))
-                    streamWriter.WriteLine(DataStorage.USERS_HEADER_TEXT);
+                    streamWriter.WriteLine(DataStorage.USER_EVENTS_HEADER_TEXT);
             }
 
-            using (StreamWriter streamWriter = File.AppendText(DataStorage.USERS_FILE))
+            using (StreamWriter streamWriter = new StreamWriter(DataStorage.USER_EVENTS_FILE, true))
                 streamWriter.WriteLine(userEvent.toString());
             return true;
         }
