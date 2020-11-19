@@ -12,12 +12,12 @@ namespace DataLayer.Storage
     public class DataStorage
     {
         public static string DATA_FOLDER_PATH = @"C:\TrackAndTraceData";
-
+        public static string USER_EVENTS_FILE = @"C:\TrackAndTraceData\userevents.csv";
         public Dictionary<String, Person> Users { get; }
 
         public Dictionary<String, Location> Locations { get; }
 
-        public Dictionary<String, List<UserEvent>> UserEvents{ get; }
+        public  List<UserEvent> UserEvents{ get; }
 
         private static DataStorage instance;
 
@@ -25,7 +25,8 @@ namespace DataLayer.Storage
         {
             Users = new Dictionary<String, Person>();
             Locations = new Dictionary<String, Location>();
-            UserEvents = new Dictionary<String, List<UserEvent>>();
+            UserEvents = new List<UserEvent>();
+
 
             //DataLoader loader = DataLoader.Instance.loadUserDataFromCSV();
             //TODO on every start load all the data even if there is no data 
@@ -47,15 +48,7 @@ namespace DataLayer.Storage
 
 
         //might be useless
-        public List<UserEvent> getUserEventsByID(String userID)
-        {
-            if(!UserEvents.ContainsKey(userID))
-            {
-                throw new ArgumentException("The user does not exist.");
-            }
-
-            return UserEvents[userID];
-        }
+        
 
     }
 }
