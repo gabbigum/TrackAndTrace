@@ -33,9 +33,10 @@ namespace BusinessObjects.TrackAndTrace
             throw new NotImplementedException();
         }
 
-        public bool recordContact(Person person1, Person person2)
+        public bool recordContact(Person person1, Person person2, Location location)
         {
             throw new NotImplementedException();
+            //need to implement getLocationByID
         }
 
         public bool recordVisit(Person person, Location location)

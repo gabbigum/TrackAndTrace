@@ -13,7 +13,7 @@ namespace BusinessObjects.TrackAndTrace
         bool addNewIndividual(String firstName, String lastName, String phoneNumber);
         bool addNewLocation(String locationName, String address, String locationType);
 
-        bool recordContact(Person person1, Person person2);
+        bool recordContact(Person person1, Person person2, Location location);
 
         bool recordVisit(Person person, Location location);
 
