@@ -16,12 +16,21 @@ namespace BusinessObjects.Entities
         private int LocationID { get; }
         private String LocationType { get; }
 
-        public Location(String locationName, String address, String locationType)
+        public Location(String locationName, String address, String locationType, bool hasID = false)
         {
             this.LocationName = locationName;
             this.Address = address;
             this.LocationType = locationType;
-            LocationID = UIDGenerator.Instance.nextUniqueID();
+
+            if(!hasID)
+            {
+                LocationID = UIDGenerator.Instance.nextUniqueID();
+            }
+        }
+
+        public string toString()
+        {
+            return LocationID + "," + LocationName + "," + Address + "," + LocationType;
         }
         
     }
