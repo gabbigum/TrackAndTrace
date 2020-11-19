@@ -22,7 +22,7 @@ namespace BusinessObjects.TrackAndTrace
             this.Person1 = person;
             this.LocationID = locationID;
             DateTime = DateTime.Now;
-            ToString = Person1.UserID + "," + LocationID + "," + DateTime.ToString();
+            ToString = Person1.UserID + "," + "empty," + LocationID + "," + DateTime.ToString();
         }
         public UserEvent(Person person1, Person person2, String locationID)
         {
@@ -30,7 +30,7 @@ namespace BusinessObjects.TrackAndTrace
             this.Person2 = person2;
             this.LocationID = locationID;
             this.DateTime = DateTime.Now;
-            ToString = Person1.UserID + ","+ Person2.UserID + "," + LocationID + "," + DateTime.ToString();
+            ToString = Person1.UserID + "," + Person2.UserID + "," + LocationID + "," + DateTime.ToString();
         }
 
         public string toString()
