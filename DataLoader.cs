@@ -50,12 +50,16 @@ namespace DataLayer.IO
                 String line = reader.ReadLine();
                 string[] values = line.Split(',');
 
-                dataStorage.Users.Add(
-                    values[0],
-                    new Person(
-                        values[1],
-                        values[2],
-                        values[3]));
+                if (!dataStorage.Users.ContainsKey(values[0]))
+                {
+                    dataStorage.Users.Add(
+                        values[0],
+                        new Person(
+                            values[1],
+                            values[2],
+                            values[3]));
+                }
+
             }
             // think about implementation of that what it should return
             return true;
@@ -79,12 +83,17 @@ namespace DataLayer.IO
                 String line = reader.ReadLine();
                 string[] values = line.Split(',');
 
-                dataStorage.Locations.Add(
-                    values[0],
-                    new Location(
-                        values[1],
-                        values[2],
-                        values[3]));
+
+                if (!dataStorage.Locations.ContainsKey(values[0]))
+                {
+                    dataStorage.Locations.Add(
+                        values[0],
+                        new Location(
+                            values[1],
+                            values[2],
+                            values[3]));
+                }
+
             }
             return true;
         }
@@ -94,7 +103,7 @@ namespace DataLayer.IO
             //start reading form file
             //for every line check if there's person 2
             //if there is load the data for the person 2 in the storage as well
-            DataStorage storage = DataStorage.Instance;
+            DataStorage dataStorage = DataStorage.Instance;
 
             StreamReader reader = new StreamReader(File.OpenRead(fileName));
 
@@ -107,11 +116,11 @@ namespace DataLayer.IO
 
                 if (values[1].Equals("empty"))
                 {
-                    storage.UserEvents.Add(new UserEvent(loadPersonByID(values[0]), values[2]));
+                    dataStorage.UserEvents.Add(new UserEvent(loadPersonByID(values[0]), values[2]));
                     //verify format
                 } else
                 {
-                    storage.UserEvents.Add(new UserEvent(loadPersonByID(values[0]),loadPersonByID(values[1]), values[2]));
+                    dataStorage.UserEvents.Add(new UserEvent(loadPersonByID(values[0]),loadPersonByID(values[1]), values[2]));
                 }
             }
         }
@@ -136,6 +145,29 @@ namespace DataLayer.IO
             }
             throw new ArgumentException("User id not found.");
         }
+
+
+        private Location loadLocationByID(string locationID)
+        {
+            DataStorage storage = DataStorage.Instance;
+
+            StreamReader reader = new StreamReader(File.OpenRead(DataStorage.LOCATIONS_FILE));
+
+            string header = reader.ReadLine();
+
+            while(!reader.EndOfStream)
+            {
+                string line = reader.ReadLine();
+                string[] values = line.Split(',');
+
+                if (values[0].Equals(locationID))
+                {
+                    return new Location(values[1], values[2], values[3]);
+                }
+            }
+            throw new ArgumentException();
+        }
+
 
 
     }
