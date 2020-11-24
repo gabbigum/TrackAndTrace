@@ -26,6 +26,8 @@ namespace DataLayer.Storage
 
         public  List<UserEvent> UserEvents{ get; }
 
+        public DataWriter writer { get; }
+
         private static DataStorage instance;
 
         private DataStorage()
@@ -33,8 +35,9 @@ namespace DataLayer.Storage
             Users = new Dictionary<String, Person>();
             Locations = new Dictionary<String, Location>();
             UserEvents = new List<UserEvent>();
+            writer = DataWriter.Instance;
 
-
+            //if files do not exist create them then load the data
             //DataLoader loader = DataLoader.Instance.loadUserDataFromCSV();
             //TODO on every start load all the data even if there is no data 
 
