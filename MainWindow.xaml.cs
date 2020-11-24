@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using BusinessObjects.TrackAndTrace;
 using BusinessObjects.Entities;
 
+
 namespace TrackAndTrace
 {
     /// <summary>
@@ -24,6 +25,7 @@ namespace TrackAndTrace
     public partial class MainWindow : Window
     {
         private TrackAndTraceService trackAndTrace;
+
 
         public MainWindow()
         {
@@ -59,11 +61,19 @@ namespace TrackAndTrace
                 return;
             }
 
-            trackAndTrace.addNewIndividual(
+            bool isAdded = trackAndTrace.addNewIndividual(
                 txtInsertFirstName.Text.Trim(),
                 txtInsertLastName.Text.Trim(),
                 txtInsertPhoneNumber.Text.Trim()
                 );
+
+            if (!isAdded)
+            {
+                MessageBox.Show("Couldn't add individual to the system. Individual attributes duplicate.");
+                return;
+            }
+
+            MessageBox.Show("Individual added successfully");
             //str strip first name and last name even if they are imported with intervals
         }
 
