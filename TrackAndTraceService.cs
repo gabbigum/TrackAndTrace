@@ -19,15 +19,19 @@ namespace BusinessObjects.TrackAndTrace
         }
 
         public bool addNewIndividual(string firstName, string lastName, string phoneNumber)
-        {
-            
-
-            //questionable
-            Person person = new Person(firstName, lastName, phoneNumber);
+        { 
+            Person person = new Person(firstName, lastName, phoneNumber, false);
+            if(dataStorage.Users.ContainsValue(person))
+            {
+                //not sure
+            }
+            if (dataStorage.Users.ContainsKey(person.UserID.ToString()))
+            {
+                return false;
+            }
             dataStorage.Users.Add(person.UserID.ToString(), person);
-            //questionable
-
-            throw new NotImplementedException();
+            dataStorage.writer.appendUserToCSV(person);
+            return true;
         }
 
         public bool addNewLocation(string locationName, string address, string locationType)
