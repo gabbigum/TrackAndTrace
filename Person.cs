@@ -32,6 +32,15 @@ namespace BusinessObjects.Entities
         {
             return UserID + "," + FirstName + "," + LastName + "," + PhoneNumber;
         }
-       
+
+        public override bool Equals(object obj)
+        {
+            Person p = obj as Person;
+
+            return 
+                this.FirstName == p.FirstName
+                && this.LastName == p.LastName
+                && this.PhoneNumber == p.PhoneNumber;
+        }
     }
 }
