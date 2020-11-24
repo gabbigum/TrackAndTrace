@@ -125,6 +125,13 @@ namespace DataLayer.IO
             }
         }
 
+        public void loadAllData()
+        {
+            loadUserDataFromCSV(DataStorage.USERS_FILE);
+            loadLocationsFromCSV(DataStorage.LOCATIONS_FILE);
+            loadUserEventsFromCSV(DataStorage.USER_EVENTS_FILE);
+        } 
+
         private Person loadPersonByID(string userID)
         {
             DataStorage storage = DataStorage.Instance;
