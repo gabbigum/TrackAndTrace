@@ -24,7 +24,7 @@ namespace BusinessObjects.Entities
             //don't create new id everytime a person is created
             if (!hasID)
             {
-                this.UserID = UIDGenerator.Instance.nextUniqueID();
+                UserID = UIDGenerator.Instance.nextUniqueID();
             }
         }
 
