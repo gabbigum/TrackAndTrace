@@ -8,13 +8,25 @@ using DataLayer.Storage;
 
 namespace BusinessObjects.TrackAndTrace
 {
-    class TrackAndTraceService : TrackAndTraceAPI
+    public class TrackAndTraceService : TrackAndTraceAPI
     {
 
         private DataStorage dataStorage;
 
+        public TrackAndTraceService()
+        {
+            dataStorage = DataStorage.Instance;
+        }
+
         public bool addNewIndividual(string firstName, string lastName, string phoneNumber)
         {
+            
+
+            //questionable
+            Person person = new Person(firstName, lastName, phoneNumber);
+            dataStorage.Users.Add(person.UserID.ToString(), person);
+            //questionable
+
             throw new NotImplementedException();
         }
 
