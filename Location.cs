@@ -32,7 +32,14 @@ namespace BusinessObjects.Entities
         {
             return LocationID + "," + LocationName + "," + Address + "," + LocationType;
         }
-        
+
+        public override bool Equals(object obj)
+        {
+            return obj is Location location &&
+                   LocationName == location.LocationName &&
+                   Address == location.Address &&
+                   LocationType == location.LocationType;
+        }
     }
 }
 
