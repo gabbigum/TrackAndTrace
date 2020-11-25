@@ -38,7 +38,19 @@ namespace BusinessObjects.TrackAndTrace
 
         public bool addNewLocation(string locationName, string address, string locationType)
         {
-            throw new NotImplementedException();
+            Location location = new Location(locationName, address, locationType);
+
+            foreach(KeyValuePair<String, Location> entry in dataStorage.Locations)
+            {
+                if (entry.Value.Equals(location))
+                {
+                    return false;
+                }
+            }
+
+            dataStorage.Locations.Add(location.LocationID.ToString(), location);
+            dataStorage.writer.appendLocationToCSV(location);
+            return true;
         }
 
         public bool generateContactsBetweenDate()
