@@ -20,15 +20,17 @@ namespace BusinessObjects.TrackAndTrace
 
         public bool addNewIndividual(string firstName, string lastName, string phoneNumber)
         { 
+            //check if file contains person with these 3 parameters exist
             Person person = new Person(firstName, lastName, phoneNumber, false);
-            if(dataStorage.Users.ContainsValue(person))
+
+            foreach (KeyValuePair<String, Person> entry in dataStorage.Users)
             {
-                //not sure
+                if (entry.Value.Equals(person))
+                {
+                    return false;
+                }
             }
-            if (dataStorage.Users.ContainsKey(person.UserID.ToString()))
-            {
-                return false;
-            }
+
             dataStorage.Users.Add(person.UserID.ToString(), person);
             dataStorage.writer.appendUserToCSV(person);
             return true;

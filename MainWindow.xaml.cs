@@ -42,7 +42,9 @@ namespace TrackAndTrace
             //writes data to the file
             //loads object to storage -- should that be coupled into addNewIndividual()???
             
-            if (txtInsertFirstName.Text.Equals("") || txtInsertLastName.Text.Equals("") || txtInsertPhoneNumber.Text.Equals(""))
+            if (txtInsertFirstName.Text.Equals("")||
+                txtInsertLastName.Text.Equals("") ||
+                txtInsertPhoneNumber.Text.Equals(""))
             {
                 MessageBox.Show("You must fill in all the fields. Please try again.");
                 return;
@@ -59,7 +61,6 @@ namespace TrackAndTrace
             {
                 MessageBox.Show("You have entered invalid phone number. Please try again.");
                 return;
-                // ^-?[0-9][0-9]+$
             }
 
             bool isAdded = trackAndTrace.addNewIndividual(
