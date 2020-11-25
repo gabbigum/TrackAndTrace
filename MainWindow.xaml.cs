@@ -48,17 +48,18 @@ namespace TrackAndTrace
                 return;
             }
 
-            if(Regex.IsMatch(txtInsertFirstName.Text, @"^-?[0-9][0-9,\.]+$") ||
-                Regex.IsMatch(txtInsertLastName.Text, @"^-?[0-9][0-9,\.]+$"))
+            if (Regex.IsMatch(txtInsertFirstName.Text, @"\d") ||
+                Regex.IsMatch(txtInsertLastName.Text, @"\d"))
             {
                 MessageBox.Show("You have entered invalid name. Please try again.");
                 return;
             }
 
-            if(!Regex.IsMatch(txtInsertPhoneNumber.Text, @"^-?[0-9][0-9]+$"))
+            if(!Regex.IsMatch(txtInsertPhoneNumber.Text, @"^\d+$"))
             {
                 MessageBox.Show("You have entered invalid phone number. Please try again.");
                 return;
+                // ^-?[0-9][0-9]+$
             }
 
             bool isAdded = trackAndTrace.addNewIndividual(
@@ -74,7 +75,6 @@ namespace TrackAndTrace
             }
 
             MessageBox.Show("Individual added successfully");
-            //str strip first name and last name even if they are imported with intervals
         }
 
         private void btnAddNewLocation_Click(object sender, RoutedEventArgs e)
