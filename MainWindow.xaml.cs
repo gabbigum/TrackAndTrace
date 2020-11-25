@@ -71,7 +71,7 @@ namespace TrackAndTrace
 
             if (!isAdded)
             {
-                MessageBox.Show("Couldn't add individual to the system. Individual attributes duplicate.");
+                MessageBox.Show("Could not add individual to the system. Individual already exists.");
                 return;
             }
 

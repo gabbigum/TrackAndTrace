@@ -35,12 +35,10 @@ namespace BusinessObjects.Entities
 
         public override bool Equals(object obj)
         {
-            Person p = obj as Person;
-
-            return 
-                this.FirstName == p.FirstName
-                && this.LastName == p.LastName
-                && this.PhoneNumber == p.PhoneNumber;
+            return obj is Person person &&
+                   FirstName == person.FirstName &&
+                   LastName == person.LastName &&
+                   PhoneNumber == person.PhoneNumber;
         }
     }
 }

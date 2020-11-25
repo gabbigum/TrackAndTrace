@@ -20,9 +20,9 @@ namespace BusinessObjects.TrackAndTrace
 
         public bool addNewIndividual(string firstName, string lastName, string phoneNumber)
         { 
-            //check if file contains person with these 3 parameters exist
             Person person = new Person(firstName, lastName, phoneNumber, false);
 
+            //check if person already exist 
             foreach (KeyValuePair<String, Person> entry in dataStorage.Users)
             {
                 if (entry.Value.Equals(person))
