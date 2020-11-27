@@ -15,7 +15,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BusinessObjects.TrackAndTrace;
 using BusinessObjects.Entities;
+using BusinessObjects.Utilities;
 using DataLayer.IO;
+using System.ComponentModel;
 
 namespace TrackAndTrace
 {
@@ -178,6 +180,21 @@ namespace TrackAndTrace
             {
                 cboSelectContactLocation.Items.Add(entry.Value.LocationName + " " + entry.Key);
             }
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            //datawriter class edit - write ID-s on close
+            //dataloader class edit - load ID-s on startup
+
+            trackAndTrace.
+                dataStorage.
+                writer.
+                updateIDPersistanceFile(
+                UIDGenerator.Instance.UniqueUserID.ToString(),
+                UIDGenerator.Instance.UniqueLocationID.ToString()
+                );
+            base.OnClosing(e);
         }
     }
 }

@@ -84,6 +84,12 @@ namespace DataLayer.IO
             return true;
         }
 
+        public void updateIDPersistanceFile(String userIDCount, String locationIDCount)
+        {
+            using (StreamWriter streamWriter = new StreamWriter(DataStorage.ID_PERSISTANCE_FILE))
+                streamWriter.WriteLine(userIDCount + "," + locationIDCount);
+        }
+
 
         public bool writeAllUsersToCSV_OnClose()
         {
@@ -107,6 +113,10 @@ namespace DataLayer.IO
             if (!File.Exists(DataStorage.USER_EVENTS_FILE))
             {
                 File.Create(DataStorage.USER_EVENTS_FILE);
+            }
+            if (!File.Exists(DataStorage.ID_PERSISTANCE_FILE))
+            {
+                File.Create(DataStorage.ID_PERSISTANCE_FILE);
             }
 
         }
