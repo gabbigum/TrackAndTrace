@@ -73,7 +73,6 @@
     <Compile Include="DataStorage.cs" />
     <Compile Include="DataWriter.cs" />
     <Compile Include="Location.cs" />
-    <Compile Include="LocationType.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="TrackAndTraceAPI.cs" />
     <Compile Include="TrackAndTraceService.cs" />
