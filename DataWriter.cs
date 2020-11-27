@@ -16,7 +16,7 @@ namespace DataLayer.IO
 
         private DataWriter()
         {
-
+            
         }
 
         public static DataWriter Instance
@@ -36,12 +36,11 @@ namespace DataLayer.IO
             if (person == null)
                 return false;
 
-            if (!File.Exists(DataStorage.USERS_FILE))
+            if (new FileInfo(DataStorage.USERS_FILE).Length == 0)
             {
                 using (StreamWriter streamWriter = new StreamWriter(DataStorage.USERS_FILE, true))
                     streamWriter.WriteLine(DataStorage.USERS_HEADER_TEXT);
             }
-
 
             using (StreamWriter streamWriter = new StreamWriter(DataStorage.USERS_FILE, true))
                 streamWriter.WriteLine(person.toString());
@@ -57,7 +56,7 @@ namespace DataLayer.IO
             if (location == null)
                 return false;
 
-            if (!File.Exists(DataStorage.LOCATIONS_FILE))
+            if (new FileInfo(DataStorage.LOCATIONS_FILE).Length == 0)
             {
                 using (StreamWriter streamWriter = new StreamWriter(DataStorage.LOCATIONS_FILE, true))
                     streamWriter.WriteLine(DataStorage.LOCATIONS_HEADER_TEXT);
@@ -74,7 +73,7 @@ namespace DataLayer.IO
             if (userEvent == null)
                 return false;
 
-            if (!File.Exists(DataStorage.USER_EVENTS_FILE))
+            if (new FileInfo(DataStorage.USER_EVENTS_FILE).Length == 0)
             {
                 using (StreamWriter streamWriter = new StreamWriter(DataStorage.USER_EVENTS_FILE, true))
                     streamWriter.WriteLine(DataStorage.USER_EVENTS_HEADER_TEXT);
@@ -91,6 +90,25 @@ namespace DataLayer.IO
             //mechanism that might not be used
 
             return true;
+        }
+
+        public void createFiles()
+        {
+            if (!File.Exists(DataStorage.USERS_FILE))
+            {
+                File.Create(DataStorage.USERS_FILE);
+            }
+
+            if (!File.Exists(DataStorage.LOCATIONS_FILE))
+            {
+                File.Create(DataStorage.LOCATIONS_FILE);
+            }
+
+            if (!File.Exists(DataStorage.USER_EVENTS_FILE))
+            {
+                File.Create(DataStorage.USER_EVENTS_FILE);
+            }
+
         }
      }
 }
