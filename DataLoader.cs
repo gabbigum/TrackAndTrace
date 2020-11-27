@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 using BusinessObjects.Entities;
 using DataLayer.Storage;
 using BusinessObjects.TrackAndTrace;
+using BusinessObjects.Utilities;
 
 namespace DataLayer.IO
 {
     public class DataLoader
-    {
-
+    {    
         private static DataLoader instance;
 
         private DataLoader()
         {
-
+            //UIDGenerator.Instance.UniqueID = 400;
         }
 
         public static DataLoader Instance

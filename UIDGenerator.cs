@@ -10,11 +10,11 @@ namespace BusinessObjects.Utilities
     {
         
         private static UIDGenerator instance;
-        public int UniqueID { get; private set; }
+        public int UniqueID { get; set; } = 400;
 
         private UIDGenerator()
         {
-            UniqueID = 1;
+
         }
 
         public static UIDGenerator Instance

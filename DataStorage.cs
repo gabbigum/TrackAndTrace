@@ -7,6 +7,7 @@ using DataLayer.IO;
 using BusinessObjects.Entities;
 using BusinessObjects.TrackAndTrace;
 
+
 namespace DataLayer.Storage
 {
     public class DataStorage
@@ -36,6 +37,7 @@ namespace DataLayer.Storage
             UserEvents = new List<UserEvent>();
             writer = DataWriter.Instance;
             writer.createFiles();
+            
             //loader.loadAllData();
             //if files do not exist create them then load the data
             //DataLoader loader = DataLoader.Instance.loadUserDataFromCSV();
