@@ -136,6 +136,18 @@ namespace DataLayer.IO
             return true;
         }
 
+        public void loadIDPersistanceFile()
+        { 
+            String data = "";
+            using (StreamReader reader = new StreamReader(File.OpenRead(DataStorage.ID_PERSISTANCE_FILE)))
+            {
+                data = reader.ReadLine();
+            }
+            string[] tokens = data.Split(',');
+            UIDGenerator.Instance.UniqueUserID = Int32.Parse(tokens[0]);
+            UIDGenerator.Instance.UniqueLocationID = Int32.Parse(tokens[1]);
+        }
+
         public void loadAllData()
         {
             if (File.Exists(DataStorage.USERS_FILE))
