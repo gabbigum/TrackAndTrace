@@ -61,6 +61,7 @@ namespace DataLayer.IO
                 }
 
             }
+            reader.Close();
             // think about implementation of that what it should return
             return true;
         }
@@ -95,6 +96,7 @@ namespace DataLayer.IO
                 }
 
             }
+            reader.Close();
             return true;
         }
 
@@ -123,16 +125,29 @@ namespace DataLayer.IO
                     dataStorage.UserEvents.Add(new UserEvent(loadPersonByID(values[0]),loadPersonByID(values[1]), values[2]));
                 }
             }
+            reader.Close();
         }
 
         public void loadAllData()
         {
-            loadUserDataFromCSV(DataStorage.USERS_FILE);
-            loadLocationsFromCSV(DataStorage.LOCATIONS_FILE);
-            loadUserEventsFromCSV(DataStorage.USER_EVENTS_FILE);
+            if (File.Exists(DataStorage.USERS_FILE))
+            {
+                loadUserDataFromCSV(DataStorage.USERS_FILE);
+
+            }
+
+            if (File.Exists(DataStorage.LOCATIONS_FILE))
+            {
+                loadLocationsFromCSV(DataStorage.LOCATIONS_FILE);
+            }
+
+            if (File.Exists(DataStorage.USER_EVENTS_FILE))
+            {
+                loadUserEventsFromCSV(DataStorage.USER_EVENTS_FILE);
+            }
         } 
 
-        private Person loadPersonByID(string userID)
+        public Person loadPersonByID(string userID)
         {
             DataStorage storage = DataStorage.Instance;
 
@@ -152,6 +167,8 @@ namespace DataLayer.IO
             }
             throw new ArgumentException("User id not found.");
         }
+
+        
 
 
         private Location loadLocationByID(string locationID)
