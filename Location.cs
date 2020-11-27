@@ -23,7 +23,7 @@ namespace BusinessObjects.Entities
 
             if(!hasID)
             {
-                LocationID = UIDGenerator.Instance.nextUniqueID();
+                this.LocationID = UIDGenerator.Instance.nextUniqueLocationID();
             }
         }
 
