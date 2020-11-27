@@ -11,7 +11,7 @@ namespace BusinessObjects.TrackAndTrace
     public class TrackAndTraceService : TrackAndTraceAPI
     {
 
-        private DataStorage dataStorage;
+        public DataStorage dataStorage { get; }
 
         public TrackAndTraceService()
         {
@@ -38,7 +38,7 @@ namespace BusinessObjects.TrackAndTrace
 
         public bool addNewLocation(string locationName, string address, string locationType)
         {
-            Location location = new Location(locationName, address, locationType);
+            Location location = new Location(locationName, address, locationType, false);
 
             foreach(KeyValuePair<String, Location> entry in dataStorage.Locations)
             {
@@ -65,8 +65,25 @@ namespace BusinessObjects.TrackAndTrace
 
         public bool recordContact(Person person1, Person person2, Location location)
         {
-            throw new NotImplementedException();
+            if (!dataStorage.Users.ContainsKey(person1.UserID.ToString()))
+            {
+                return false;
+            }
+
+            if (!dataStorage.Users.ContainsKey(person2.UserID.ToString()))
+            {
+                return false;
+            }
+
+            if (!dataStorage.Locations.ContainsKey(location.LocationID.ToString()))
+            {
+                return false;
+            }
+
+            //check if contacts and location exist
             //need to implement getLocationByID
+
+            return false;
         }
 
         public bool recordVisit(Person person, Location location)
