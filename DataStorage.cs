@@ -16,6 +16,7 @@ namespace DataLayer.Storage
         public static string LOCATIONS_HEADER_TEXT = "Location ID,Location Name,Address,Location Type";
         public static string USER_EVENTS_HEADER_TEXT = "Person 1,Person 2,Location ID,Date";//not confirmed
 
+        public static string ID_PERSISTANCE_FILE = @"C:\TrackAndTraceData\id_count.csv";
         public static string USER_EVENTS_FILE = @"C:\TrackAndTraceData\userevents.csv";
         public static string USERS_FILE = @"C:\TrackAndTraceData\users.csv";
         public static string LOCATIONS_FILE = @"C:\TrackAndTraceData\locations.csv";
