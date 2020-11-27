@@ -10,12 +10,12 @@ namespace BusinessObjects.Entities
 {
     public class Location
     {
-        private String LocationName { get; }
+        public String LocationName { get; }
         private String Address { get; }
         public int LocationID { get; }
         private String LocationType { get; }
 
-        public Location(String locationName, String address, String locationType, bool hasID = false)
+        public Location(String locationName, String address, String locationType, bool hasID = true)
         {
             this.LocationName = locationName;
             this.Address = address;
