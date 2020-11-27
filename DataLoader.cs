@@ -34,34 +34,34 @@ namespace DataLayer.IO
 
         public bool loadUserDataFromCSV(String fileName)
         {
-            if(!File.Exists(fileName))
+            if (!File.Exists(fileName))
             {
                 return false;
             }
 
             DataStorage dataStorage = DataStorage.Instance;
 
-            StreamReader reader = new StreamReader(File.OpenRead(fileName));
+            using (StreamReader reader = new StreamReader(File.OpenRead(fileName)))
+            { 
+                String header = reader.ReadLine();
 
-            String header = reader.ReadLine();
-
-            while (!reader.EndOfStream)
-            {
-                String line = reader.ReadLine();
-                string[] values = line.Split(',');
-
-                if (!dataStorage.Users.ContainsKey(values[0]))
+                while (!reader.EndOfStream)
                 {
-                    dataStorage.Users.Add(
-                        values[0],
-                        new Person(
-                            values[1],
-                            values[2],
-                            values[3]));
-                }
+                    String line = reader.ReadLine();
+                    string[] values = line.Split(',');
 
+                    if (!dataStorage.Users.ContainsKey(values[0]))
+                    {
+                        dataStorage.Users.Add(
+                            values[0],
+                            new Person(
+                                values[1],
+                                values[2],
+                                values[3]));
+                    }
+
+                }
             }
-            reader.Close();
             // think about implementation of that what it should return
             return true;
         }
@@ -75,75 +75,103 @@ namespace DataLayer.IO
 
             DataStorage dataStorage = DataStorage.Instance;
 
-            StreamReader reader = new StreamReader(File.OpenRead(fileName));
+            using (StreamReader reader = new StreamReader(File.OpenRead(fileName)))
+            { 
+                String header = reader.ReadLine();
 
-            String header = reader.ReadLine();
-
-            while (!reader.EndOfStream)
-            {
-                String line = reader.ReadLine();
-                string[] values = line.Split(',');
-
-
-                if (!dataStorage.Locations.ContainsKey(values[0]))
+                while (!reader.EndOfStream)
                 {
-                    dataStorage.Locations.Add(
-                        values[0],
-                        new Location(
-                            values[1],
-                            values[2],
-                            values[3]));
-                }
+                    String line = reader.ReadLine();
+                    string[] values = line.Split(',');
 
+
+                    if (!dataStorage.Locations.ContainsKey(values[0]))
+                    {
+                        dataStorage.Locations.Add(
+                            values[0],
+                            new Location(
+                                values[1],
+                                values[2],
+                                values[3]));
+                    }
+
+                }
             }
-            reader.Close();
             return true;
         }
 
-        public void loadUserEventsFromCSV(string fileName)
+        public bool loadUserEventsFromCSV(string fileName)
         {
+            //create fileexist method
+            if (!File.Exists(fileName))
+            {
+                return false;
+            }
             //start reading form file
             //for every line check if there's person 2
             //if there is load the data for the person 2 in the storage as well
             DataStorage dataStorage = DataStorage.Instance;
 
-            StreamReader reader = new StreamReader(File.OpenRead(fileName));
-
-            string header = reader.ReadLine();
-
-            while (!reader.EndOfStream)
+            using (StreamReader reader = new StreamReader(File.OpenRead(fileName)))
             {
-                string line = reader.ReadLine();
-                string[] values = line.Split(',');
 
-                if (values[1].Equals("empty"))
+                string header = reader.ReadLine();
+
+                while (!reader.EndOfStream)
                 {
-                    dataStorage.UserEvents.Add(new UserEvent(loadPersonByID(values[0]), values[2]));
-                    //verify format
-                } else
-                {
-                    dataStorage.UserEvents.Add(new UserEvent(loadPersonByID(values[0]),loadPersonByID(values[1]), values[2]));
+                    string line = reader.ReadLine();
+                    string[] values = line.Split(',');
+
+                    if (values[1].Equals("empty"))
+                    {
+                        dataStorage.UserEvents.Add(new UserEvent(loadPersonByID(values[0]), values[2]));
+                        //verify format
+                    }
+                    else
+                    {
+                        dataStorage.UserEvents.Add(new UserEvent(loadPersonByID(values[0]), loadPersonByID(values[1]), values[2]));
+                    }
                 }
             }
-            reader.Close();
+            return true;
         }
 
         public void loadAllData()
         {
             if (File.Exists(DataStorage.USERS_FILE))
             {
-                loadUserDataFromCSV(DataStorage.USERS_FILE);
+                try
+                {
+                    loadUserDataFromCSV(DataStorage.USERS_FILE);
+                } catch (IOException ex)
+                {
+                    ex.ToString();
+                }
 
             }
 
             if (File.Exists(DataStorage.LOCATIONS_FILE))
             {
-                loadLocationsFromCSV(DataStorage.LOCATIONS_FILE);
+                try
+                {
+                    loadLocationsFromCSV(DataStorage.LOCATIONS_FILE);
+                } catch (IOException ex)
+                {
+                    ex.ToString();
+                }
+
             }
 
             if (File.Exists(DataStorage.USER_EVENTS_FILE))
             {
-                loadUserEventsFromCSV(DataStorage.USER_EVENTS_FILE);
+                try
+                {
+                    loadUserEventsFromCSV(DataStorage.USER_EVENTS_FILE);
+                } catch (IOException ex)
+                {
+                    ex.ToString();
+                }
+
             }
         } 
 
