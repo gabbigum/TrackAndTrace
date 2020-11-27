@@ -19,7 +19,6 @@ namespace DataLayer.Storage
         public static string USERS_FILE = @"C:\TrackAndTraceData\users.csv";
         public static string LOCATIONS_FILE = @"C:\TrackAndTraceData\locations.csv";
 
-
         public Dictionary<String, Person> Users { get; }
 
         public Dictionary<String, Location> Locations { get; }
@@ -36,7 +35,8 @@ namespace DataLayer.Storage
             Locations = new Dictionary<String, Location>();
             UserEvents = new List<UserEvent>();
             writer = DataWriter.Instance;
-
+            writer.createFiles();
+            //loader.loadAllData();
             //if files do not exist create them then load the data
             //DataLoader loader = DataLoader.Instance.loadUserDataFromCSV();
             //TODO on every start load all the data even if there is no data 
