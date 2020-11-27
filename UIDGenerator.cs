@@ -10,7 +10,8 @@ namespace BusinessObjects.Utilities
     {
         
         private static UIDGenerator instance;
-        public int UniqueID { get; set; } = 400;
+        public int UniqueUserID { get; set; } = 400;
+        public int UniqueLocationID { get; set; } = 400;
 
         private UIDGenerator()
         {
@@ -30,9 +31,14 @@ namespace BusinessObjects.Utilities
 
         }
 
-        public int nextUniqueID()
+        public int nextUniqueUserID()
         {
-            return UniqueID += 1;
+            return UniqueUserID += 1;
+        }
+
+        public int nextUniqueLocationID()
+        {
+            return UniqueLocationID += 1;
         }
     }
 }
