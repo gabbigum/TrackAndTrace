@@ -53,9 +53,32 @@ namespace BusinessObjects.TrackAndTrace
             return true;
         }
 
-        public bool generateContactsBetweenDate()
+        public HashSet<String> generatePhonesBetweenDate(Person person, DateTime timeStart, DateTime timeEnd)
         {
-            throw new NotImplementedException();
+            HashSet<String> phoneNumbers = new HashSet<String>();
+
+            foreach(var userEvent in dataStorage.UserEvents)
+            {
+
+                if (userEvent.DateTime >= timeStart && userEvent.DateTime <= timeEnd)
+                {
+                    if (person.Equals(userEvent.Person1))
+                    {
+                        if (userEvent.Person2 != null)
+                        {
+                            string nameAndNumber = userEvent.Person2.FirstName + " " + userEvent.Person2.LastName + " - " + userEvent.Person2.PhoneNumber;
+                            phoneNumbers.Add(nameAndNumber);
+                        }
+                    }
+                    if (person.Equals(userEvent.Person2))
+                    {
+                        string nameAndNumber = userEvent.Person1.FirstName + " " + userEvent.Person1.LastName + " -" + userEvent.Person1.PhoneNumber;
+                        phoneNumbers.Add(nameAndNumber);
+                    }
+                }
+            }
+
+            return phoneNumbers;
         }
 
         public bool generateLocationContactsBetweenDate()

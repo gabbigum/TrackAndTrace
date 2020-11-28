@@ -17,7 +17,7 @@ namespace BusinessObjects.TrackAndTrace
 
         bool recordVisit(Person person, Location location);
 
-        bool generateContactsBetweenDate();
+        HashSet<String> generatePhonesBetweenDate(Person person, DateTime timeStart, DateTime timeEnd);
         bool generateLocationContactsBetweenDate();
     }
 }

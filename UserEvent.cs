@@ -9,9 +9,9 @@ namespace BusinessObjects.TrackAndTrace
 {
     public class UserEvent
     {
-        private Person Person1 { get; }
-        private Person Person2 { get; }
-        private String LocationID { get; }
+        public Person Person1 { get; }
+        public Person Person2 { get; }
+        public String LocationID { get; }
         public DateTime DateTime { get; }
 
         private String ToString;
