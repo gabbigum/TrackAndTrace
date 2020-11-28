@@ -144,7 +144,6 @@ namespace DataLayer.IO
                 data = reader.ReadLine();
             }
 
-
             string[] tokens = data.Split(',');
             UIDGenerator.Instance.UniqueUserID = Int32.Parse(tokens[0]);
             UIDGenerator.Instance.UniqueLocationID = Int32.Parse(tokens[1]);
@@ -204,7 +203,7 @@ namespace DataLayer.IO
         {
             DataStorage storage = DataStorage.Instance;
 
-            StreamReader reader = new StreamReader(File.OpenRead(DataStorage.USER_EVENTS_FILE));
+            StreamReader reader = new StreamReader(File.OpenRead(DataStorage.USERS_FILE));
 
             string header = reader.ReadLine();
 
@@ -215,7 +214,7 @@ namespace DataLayer.IO
 
                 if (values[0].Equals(userID))
                 {
-                    return new Person(values[1], values[2], values[3]);
+                    return new Person(values[1], values[2], values[3], Int32.Parse(userID));
                 }
             }
             throw new ArgumentException("User id not found.");
@@ -224,7 +223,7 @@ namespace DataLayer.IO
         
 
 
-        private Location loadLocationByID(string locationID)
+        public Location loadLocationByID(string locationID)
         {
             DataStorage storage = DataStorage.Instance;
 
@@ -239,7 +238,7 @@ namespace DataLayer.IO
 
                 if (values[0].Equals(locationID))
                 {
-                    return new Location(values[1], values[2], values[3]);
+                    return new Location(values[1], values[2], values[3], Int32.Parse(locationID));
                 }
             }
             throw new ArgumentException();
