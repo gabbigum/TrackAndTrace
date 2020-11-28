@@ -179,17 +179,37 @@ namespace TrackAndTrace
             MessageBox.Show("Contact added successfully.");
         }
 
+        private void btnRecordVisit_Click(object sender, RoutedEventArgs e)
+        {
+
+            String personID = cboSelectVisitPerson.SelectedItem.ToString().Split(' ')[0];
+            String locationID = cboSelectVisitLocation.SelectedItem.ToString().Split(' ')[0];
+
+            bool recordVisit = trackAndTrace.recordVisit(
+                loader.loadPersonByID(personID),
+                loader.loadLocationByID(locationID));
+
+            if (!recordVisit)
+            {
+                MessageBox.Show("Could not execute record visit. Please try again.");
+                return;
+            }
+            MessageBox.Show("Visit added successfully.");
+        }
+
         private void populateComboBoxes()
         {
             foreach (KeyValuePair<String, Person> entry in trackAndTrace.dataStorage.Users)
             {
                 cboSelectContactPersonOne.Items.Add(entry.Key + " " + entry.Value.FirstName + " " + entry.Value.LastName);
                 cboSelectContactPersonTwo.Items.Add(entry.Key + " " + entry.Value.FirstName + " " + entry.Value.LastName);
+                cboSelectVisitPerson.Items.Add(entry.Key + " " + entry.Value.FirstName + " " + entry.Value.LastName);
             }
 
             foreach (KeyValuePair<String, Location> entry in trackAndTrace.dataStorage.Locations)
             {
                 cboSelectContactLocation.Items.Add(entry.Key + " " + entry.Value.LocationName);
+                cboSelectVisitLocation.Items.Add(entry.Key + " " + entry.Value.LocationName);
             }
         }
 
@@ -212,5 +232,6 @@ namespace TrackAndTrace
                 UIDGenerator.Instance.UniqueLocationID.ToString()
                 );
         }
+
     }
 }

@@ -12,7 +12,7 @@ namespace BusinessObjects.TrackAndTrace
         private Person Person1 { get; }
         private Person Person2 { get; }
         private String LocationID { get; }
-        private DateTime DateTime { get; }
+        public DateTime DateTime { get; }
 
         private String ToString;
 
@@ -36,12 +36,6 @@ namespace BusinessObjects.TrackAndTrace
         public string toString()
         {
             return ToString;
-        }
-
-        public bool recordEvent()
-        {
-            //send message to datawriter
-            return false;
         }
 
     }

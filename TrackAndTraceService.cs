@@ -87,7 +87,20 @@ namespace BusinessObjects.TrackAndTrace
 
         public bool recordVisit(Person person, Location location)
         {
-            throw new NotImplementedException();
+            if (!dataStorage.Users.ContainsKey(person.UserID.ToString()))
+            {
+                return false;
+            }
+
+            if (!dataStorage.Locations.ContainsKey(location.LocationID.ToString()))
+            {
+                return false;
+            }
+
+            UserEvent userEvent = new UserEvent(person, location.LocationID.ToString());
+            dataStorage.UserEvents.Add(userEvent);
+            dataStorage.writer.appendUserEventToCSV(userEvent);
+            return true;
         }
     }
 }
