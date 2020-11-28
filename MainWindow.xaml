@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TrackAndTrace"
         mc:Ignorable="d"
-        Title="Track and Trace" Height="675" Width="1200">
+        Title="Track and Trace" Height="675" Width="1200"
+        Closing="Window_Closing">
     <Grid>
         <Button x:Name="btnRecordVisit" Content="Record visit" HorizontalAlignment="Left" Margin="64,280,0,0" VerticalAlignment="Top" Width="115" Height="24"/>
         <Button x:Name="btnGenerateContactsBetweenDate" Content="Generate contacts between date" HorizontalAlignment="Left" Margin="64,360,0,0" VerticalAlignment="Top" Width="226" Height="24"/>

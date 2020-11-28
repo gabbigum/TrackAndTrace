@@ -186,7 +186,13 @@ namespace TrackAndTrace
         {
             //datawriter class edit - write ID-s on close
             //dataloader class edit - load ID-s on startup
+            
+            
+            base.OnClosing(e);
+        }
 
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
             trackAndTrace.
                 dataStorage.
                 writer.
@@ -194,7 +200,6 @@ namespace TrackAndTrace
                 UIDGenerator.Instance.UniqueUserID.ToString(),
                 UIDGenerator.Instance.UniqueLocationID.ToString()
                 );
-            base.OnClosing(e);
         }
     }
 }
