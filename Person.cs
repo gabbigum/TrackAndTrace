@@ -28,6 +28,14 @@ namespace BusinessObjects.Entities
             }
         }
 
+        public Person(String firstName, String lastName, String phoneNumber, int ID)
+        {
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.PhoneNumber = phoneNumber;
+            this.UserID = ID;
+        }
+
         public string toString()
         {
             return UserID + "," + FirstName + "," + LastName + "," + PhoneNumber;
