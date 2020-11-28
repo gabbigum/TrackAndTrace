@@ -241,31 +241,44 @@ namespace TrackAndTrace
             //telephone numbers are stored in users- we can access the user by user id directly from data storage
             //datastorage userevents will have every event with that person check every event if it contains that user and get the other user phone
             //
-
-            if(cboSelectGenerateContactsPerson.SelectedItem == null ||
-                dtStartDate.SelectedDate.Value == null ||
-                dtEndDate.SelectedDate.Value == null)
+            bool isValidOperation = true;
+            try
             {
-                MessageBox.Show("You cannot have empty fields. Please try again ");
+                DateTime dtStart = dtStartDate.SelectedDate.Value;
+                DateTime dtEnd = dtEndDate.SelectedDate.Value;
+
+                if (cboSelectGenerateContactsPerson.SelectedItem == null ||
+                    dtStart == null ||
+                    dtEnd == null)
+                {
+                    MessageBox.Show("You cannot have empty fields. Please try again ");
+                    return;
+                }
+
+                String personID = cboSelectGenerateContactsPerson.SelectedItem.ToString().Split(' ')[0];
+
+                Console.WriteLine(dtStart);
+                Console.WriteLine(dtEnd);
+
+                HashSet<String> phonesQuery = trackAndTrace.generatePhonesBetweenDate(
+                    loader.loadPersonByID(personID),
+                    dtStart,
+                    dtEnd
+                    );
+                populateLstBoxQueries(phonesQuery);
+            } catch(InvalidOperationException ex)
+            {
+                isValidOperation = false;
+                Console.WriteLine(ex.Message);
+            }
+
+            if (!isValidOperation)
+            {
+                MessageBox.Show("You must specify date.");
                 return;
             }
 
-            String personID = cboSelectGenerateContactsPerson.SelectedItem.ToString().Split(' ')[0];
-            DateTime dtStart = dtStartDate.SelectedDate.Value;
-            DateTime dtEnd = dtEndDate.SelectedDate.Value;
-
-            Console.WriteLine(dtStart);
-            Console.WriteLine(dtEnd);
-
-
-            HashSet<String> phonesQuery = trackAndTrace.generatePhonesBetweenDate(
-                loader.loadPersonByID(personID),
-                dtStart,
-                dtEnd
-                );
-            populateLstBoxQueries(phonesQuery);
             MessageBox.Show("Phones generated successfully.");
-
         }
         private void Window_Closing(object sender, CancelEventArgs e)
         {
