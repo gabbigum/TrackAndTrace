@@ -162,9 +162,20 @@ namespace TrackAndTrace
   //          String personOneID = cboSelectContactPersonOne.SelectedItem.ToString().Split(' ')[2];
 //            MessageBox.Show(personOneID);
 
-            String personOneID = cboSelectContactPersonOne.SelectedItem.ToString().Split(' ')[2];
+            String personOneID = cboSelectContactPersonOne.SelectedItem.ToString().Split(' ')[0];
+            String personTwoID = cboSelectContactPersonTwo.SelectedItem.ToString().Split(' ')[0];
+            String locationID = cboSelectContactLocation.SelectedItem.ToString().Split(' ')[0];
 
-//            bool recordContact = trackAndTrace.recordContact(loader.loadPersonByID(personOneID), );
+            bool recordContact = trackAndTrace.recordContact(
+                loader.loadPersonByID(personOneID),
+                loader.loadPersonByID(personTwoID),
+                loader.loadLocationByID(locationID));
+
+            if(!recordContact)
+            {
+                MessageBox.Show("Could not execute record contact. Please try again.");
+                return;
+            }
             MessageBox.Show("Contact added successfully.");
         }
 
@@ -172,13 +183,13 @@ namespace TrackAndTrace
         {
             foreach (KeyValuePair<String, Person> entry in trackAndTrace.dataStorage.Users)
             {
-                cboSelectContactPersonOne.Items.Add(entry.Value.FirstName + " " + entry.Value.LastName + " " + entry.Key);
-                cboSelectContactPersonTwo.Items.Add(entry.Value.FirstName + " " + entry.Value.LastName + " " + entry.Key);
+                cboSelectContactPersonOne.Items.Add(entry.Key + " " + entry.Value.FirstName + " " + entry.Value.LastName);
+                cboSelectContactPersonTwo.Items.Add(entry.Key + " " + entry.Value.FirstName + " " + entry.Value.LastName);
             }
 
             foreach (KeyValuePair<String, Location> entry in trackAndTrace.dataStorage.Locations)
             {
-                cboSelectContactLocation.Items.Add(entry.Value.LocationName + " " + entry.Key);
+                cboSelectContactLocation.Items.Add(entry.Key + " " + entry.Value.LocationName);
             }
         }
 
