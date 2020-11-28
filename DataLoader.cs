@@ -143,6 +143,8 @@ namespace DataLayer.IO
             {
                 data = reader.ReadLine();
             }
+
+
             string[] tokens = data.Split(',');
             UIDGenerator.Instance.UniqueUserID = Int32.Parse(tokens[0]);
             UIDGenerator.Instance.UniqueLocationID = Int32.Parse(tokens[1]);
@@ -166,7 +168,7 @@ namespace DataLayer.IO
             {
                 try
                 {
-                    loadLocationsFromCSV(DataStorage.LOCATIONS_FILE);
+                   loadLocationsFromCSV(DataStorage.LOCATIONS_FILE);
                 } catch (IOException ex)
                 {
                     ex.ToString();
@@ -184,6 +186,17 @@ namespace DataLayer.IO
                     ex.ToString();
                 }
 
+            }
+
+            if (File.Exists(DataStorage.ID_PERSISTANCE_FILE))
+            {
+                try
+                {
+                    loadIDPersistanceFile();
+                } catch (IOException ex)
+                {
+                    ex.ToString();
+                }
             }
         } 
 
