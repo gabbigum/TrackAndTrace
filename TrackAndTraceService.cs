@@ -72,7 +72,7 @@ namespace BusinessObjects.TrackAndTrace
                     }
                     if (person.Equals(userEvent.Person2))
                     {
-                        string nameAndNumber = userEvent.Person1.FirstName + " " + userEvent.Person1.LastName + " -" + userEvent.Person1.PhoneNumber;
+                        string nameAndNumber = userEvent.Person1.FirstName + " " + userEvent.Person1.LastName + " - " + userEvent.Person1.PhoneNumber;
                         phoneNumbers.Add(nameAndNumber);
                     }
                 }
