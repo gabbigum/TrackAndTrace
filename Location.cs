@@ -27,6 +27,13 @@ namespace BusinessObjects.Entities
             }
         }
 
+        public Location(String locationName, String address, String locationType, int ID)
+        {
+            this.LocationName = locationName;
+            this.Address = address;
+            this.LocationType = locationType;
+            this.LocationID = ID;
+        }
         public string toString()
         {
             return LocationID + "," + LocationName + "," + Address + "," + LocationType;
