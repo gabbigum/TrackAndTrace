@@ -98,6 +98,7 @@ namespace TrackAndTrace
                 return;
             }
 
+
             MessageBox.Show("Individual added successfully");
         }
 
@@ -159,8 +160,6 @@ namespace TrackAndTrace
 
             //needs to check if the contacts and location exist
 
-  //          String personOneID = cboSelectContactPersonOne.SelectedItem.ToString().Split(' ')[2];
-//            MessageBox.Show(personOneID);
 
             if(cboSelectContactPersonOne.SelectedItem == null ||
                 cboSelectContactPersonTwo.SelectedItem == null||
@@ -184,6 +183,8 @@ namespace TrackAndTrace
                 MessageBox.Show("Could not execute record contact. Please try again.");
                 return;
             }
+
+
             MessageBox.Show("Contact added successfully.");
         }
 
@@ -208,25 +209,12 @@ namespace TrackAndTrace
                 MessageBox.Show("Could not execute record visit. Please try again.");
                 return;
             }
+
+
             MessageBox.Show("Visit added successfully.");
         }
 
-        private void populateComboBoxes()
-        {
-            foreach (KeyValuePair<String, Person> entry in trackAndTrace.dataStorage.Users)
-            {
-                cboSelectContactPersonOne.Items.Add(entry.Key + " " + entry.Value.FirstName + " " + entry.Value.LastName);
-                cboSelectContactPersonTwo.Items.Add(entry.Key + " " + entry.Value.FirstName + " " + entry.Value.LastName);
-                cboSelectVisitPerson.Items.Add(entry.Key + " " + entry.Value.FirstName + " " + entry.Value.LastName);
-                cboSelectGenerateContactsPerson.Items.Add(entry.Key + " " + entry.Value.FirstName + " " + entry.Value.LastName);
-            }
-
-            foreach (KeyValuePair<String, Location> entry in trackAndTrace.dataStorage.Locations)
-            {
-                cboSelectContactLocation.Items.Add(entry.Key + " " + entry.Value.LocationName);
-                cboSelectVisitLocation.Items.Add(entry.Key + " " + entry.Value.LocationName);
-            }
-        }
+        
 
         private void btnGeneratePhonesBetweenDate_Click(object sender, RoutedEventArgs e)
         {
@@ -299,7 +287,21 @@ namespace TrackAndTrace
                 lstBoxQueries.Items.Add(item);
             }
         }
+        private void populateComboBoxes()
+        {
+            foreach (KeyValuePair<String, Person> entry in trackAndTrace.dataStorage.Users)
+            {
+                cboSelectContactPersonOne.Items.Add(entry.Key + " " + entry.Value.FirstName + " " + entry.Value.LastName);
+                cboSelectContactPersonTwo.Items.Add(entry.Key + " " + entry.Value.FirstName + " " + entry.Value.LastName);
+                cboSelectVisitPerson.Items.Add(entry.Key + " " + entry.Value.FirstName + " " + entry.Value.LastName);
+                cboSelectGenerateContactsPerson.Items.Add(entry.Key + " " + entry.Value.FirstName + " " + entry.Value.LastName);
+            }
 
-
+            foreach (KeyValuePair<String, Location> entry in trackAndTrace.dataStorage.Locations)
+            {
+                cboSelectContactLocation.Items.Add(entry.Key + " " + entry.Value.LocationName);
+                cboSelectVisitLocation.Items.Add(entry.Key + " " + entry.Value.LocationName);
+            }
+        }
     }
 }
