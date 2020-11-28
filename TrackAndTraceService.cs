@@ -79,11 +79,10 @@ namespace BusinessObjects.TrackAndTrace
             {
                 return false;
             }
-
-            //check if contacts and location exist
-            //need to implement getLocationByID
-
-            return false;
+            UserEvent userEvent = new UserEvent(person1, person2, location.LocationID.ToString());
+            dataStorage.UserEvents.Add(userEvent);
+            dataStorage.writer.appendUserEventToCSV(userEvent);
+            return true;
         }
 
         public bool recordVisit(Person person, Location location)
