@@ -162,6 +162,14 @@ namespace TrackAndTrace
   //          String personOneID = cboSelectContactPersonOne.SelectedItem.ToString().Split(' ')[2];
 //            MessageBox.Show(personOneID);
 
+            if(cboSelectContactPersonOne.SelectedItem == null ||
+                cboSelectContactPersonTwo.SelectedItem == null||
+                cboSelectContactLocation.SelectedItem == null)
+            {
+                MessageBox.Show("You cannot have empty fields. Please try again.");
+                return;
+            }
+
             String personOneID = cboSelectContactPersonOne.SelectedItem.ToString().Split(' ')[0];
             String personTwoID = cboSelectContactPersonTwo.SelectedItem.ToString().Split(' ')[0];
             String locationID = cboSelectContactLocation.SelectedItem.ToString().Split(' ')[0];
@@ -181,6 +189,12 @@ namespace TrackAndTrace
 
         private void btnRecordVisit_Click(object sender, RoutedEventArgs e)
         {
+            if(cboSelectVisitPerson.SelectedItem == null ||
+                cboSelectVisitLocation.SelectedItem == null)
+            {
+                MessageBox.Show("You cannot have empty fields. Please try again.");
+                return;
+            }
 
             String personID = cboSelectVisitPerson.SelectedItem.ToString().Split(' ')[0];
             String locationID = cboSelectVisitLocation.SelectedItem.ToString().Split(' ')[0];
@@ -204,6 +218,7 @@ namespace TrackAndTrace
                 cboSelectContactPersonOne.Items.Add(entry.Key + " " + entry.Value.FirstName + " " + entry.Value.LastName);
                 cboSelectContactPersonTwo.Items.Add(entry.Key + " " + entry.Value.FirstName + " " + entry.Value.LastName);
                 cboSelectVisitPerson.Items.Add(entry.Key + " " + entry.Value.FirstName + " " + entry.Value.LastName);
+                cboSelectGenerateContactsPerson.Items.Add(entry.Key + " " + entry.Value.FirstName + " " + entry.Value.LastName);
             }
 
             foreach (KeyValuePair<String, Location> entry in trackAndTrace.dataStorage.Locations)
@@ -213,15 +228,45 @@ namespace TrackAndTrace
             }
         }
 
-        protected override void OnClosing(CancelEventArgs e)
+        private void btnGeneratePhonesBetweenDate_Click(object sender, RoutedEventArgs e)
         {
-            //datawriter class edit - write ID-s on close
-            //dataloader class edit - load ID-s on startup
-            
-            
-            base.OnClosing(e);
-        }
+            //Generate a list of all the telephone numbers of all individuals who have been
+            //contacts of a specified individual after a specified date and time
 
+            //have select individual window - check
+            //have date time windows - check
+            //get first date time -> 
+            //start comparing and generating objects for person.phoneNumber ->
+            //as comparing for the second date time
+            //telephone numbers are stored in users- we can access the user by user id directly from data storage
+            //datastorage userevents will have every event with that person check every event if it contains that user and get the other user phone
+            //
+
+            if(cboSelectGenerateContactsPerson.SelectedItem == null ||
+                dtStartDate.SelectedDate.Value == null ||
+                dtEndDate.SelectedDate.Value == null)
+            {
+                MessageBox.Show("You cannot have empty fields. Please try again ");
+                return;
+            }
+
+            String personID = cboSelectGenerateContactsPerson.SelectedItem.ToString().Split(' ')[0];
+            DateTime dtStart = dtStartDate.SelectedDate.Value;
+            DateTime dtEnd = dtEndDate.SelectedDate.Value;
+
+            Console.WriteLine(dtStart);
+            Console.WriteLine(dtEnd);
+
+
+            HashSet<String> phonesQuery = trackAndTrace.generatePhonesBetweenDate(
+                loader.loadPersonByID(personID),
+                dtStart,
+                dtEnd
+                );
+            populateLstBoxQueries(phonesQuery);
+            MessageBox.Show("Phones generated successfully.");
+
+        }
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             trackAndTrace.
@@ -232,6 +277,16 @@ namespace TrackAndTrace
                 UIDGenerator.Instance.UniqueLocationID.ToString()
                 );
         }
+
+        private void populateLstBoxQueries(HashSet<String> set)
+        {
+            lstBoxQueries.Items.Clear();
+            foreach(var item in set)
+            {
+                lstBoxQueries.Items.Add(item);
+            }
+        }
+
 
     }
 }

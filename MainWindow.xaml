@@ -13,7 +13,11 @@
         <TextBlock x:Name="txtblkVisitPerson" HorizontalAlignment="Left" Margin="205,260,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"><Run Text="Select person"/><Run Text=":"/></TextBlock>
         <ComboBox x:Name="cboSelectVisitLocation" HorizontalAlignment="Left" Margin="343,280,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBlock x:Name="txtblkVisitLocation" HorizontalAlignment="Left" Margin="343,260,0,0" TextWrapping="Wrap" Text="Location name:" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnGenerateContactsBetweenDate" Content="Generate contacts between date" HorizontalAlignment="Left" Margin="64,360,0,0" VerticalAlignment="Top" Width="226" Height="24"/>
+        <Button x:Name="btnGeneratePhonesBetweenDate" Content="Generate contacts between date" HorizontalAlignment="Left" Margin="64,360,0,0" VerticalAlignment="Top" Width="226" Height="24" Click="btnGeneratePhonesBetweenDate_Click"/>
+        <DatePicker x:Name="dtStartDate" HorizontalAlignment="Left" Margin="487,359,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="dtEndDate" HorizontalAlignment="Left" Margin="617,359,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtblkGenerateContactPerson" HorizontalAlignment="Left" Margin="343,340,0,0" TextWrapping="Wrap" Text="Select person:" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="cboSelectGenerateContactsPerson" HorizontalAlignment="Left" Margin="340,360,0,0" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btnGenerateLocationContactsBetweenDate" Content="Generate location contacts between date" HorizontalAlignment="Left" Margin="64,440,0,0" VerticalAlignment="Top" Width="226" Height="24"/>
         <Button x:Name="btnAddIndividual" Content="Add new individual" HorizontalAlignment="Left" Margin="64,40,0,0" VerticalAlignment="Top" Width="115" Height="24" Click="btnAddIndividual_Click"/>
         <TextBlock x:Name="txtblkInsertFirstName" HorizontalAlignment="Left" Margin="205,20,0,0" TextWrapping="Wrap" Text="First name:" VerticalAlignment="Top" Width="120"/>
@@ -36,6 +40,8 @@
         <ComboBox x:Name="cboSelectContactPersonOne" HorizontalAlignment="Left" Margin="205,200,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="cboSelectContactPersonTwo" HorizontalAlignment="Left" Margin="343,200,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="cboSelectContactLocation" HorizontalAlignment="Left" Margin="480,200,0,0" VerticalAlignment="Top" Width="120"/>
+        <ListBox x:Name="lstBoxQueries" HorizontalAlignment="Left" Height="214" Margin="840,359,0,0" VerticalAlignment="Top" Width="180"/>
+
 
     </Grid>
 </Window>
