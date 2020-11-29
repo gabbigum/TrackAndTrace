@@ -81,9 +81,29 @@ namespace BusinessObjects.TrackAndTrace
             return phoneNumbers;
         }
 
-        public bool generateLocationContactsBetweenDate()
+        public HashSet<String> generateLocationContactsBetweenDate(Location location, DateTime timeStart, DateTime timeEnd)
         {
-            throw new NotImplementedException();
+            HashSet<String> contacts = new HashSet<String>();
+
+            foreach(var userEvent in dataStorage.UserEvents)
+            {
+                if (userEvent.DateTime >= timeStart && userEvent.DateTime <= timeEnd)
+                {
+                    if(userEvent.LocationID.Equals(location.LocationID.ToString()))
+                    {
+                        string name = userEvent.Person1.FirstName + " " + userEvent.Person1.LastName;
+                        contacts.Add(name);
+
+                        if(userEvent.Person2 != null)
+                        {
+                            string secondName = userEvent.Person1.FirstName + " " + userEvent.Person1.LastName;
+                            contacts.Add(secondName);
+                        }
+                    }
+                }
+            }
+
+            return contacts;
         }
 
         public bool recordContact(Person person1, Person person2, Location location)

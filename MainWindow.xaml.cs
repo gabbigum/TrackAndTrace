@@ -301,7 +301,51 @@ namespace TrackAndTrace
             {
                 cboSelectContactLocation.Items.Add(entry.Key + " " + entry.Value.LocationName);
                 cboSelectVisitLocation.Items.Add(entry.Key + " " + entry.Value.LocationName);
+                cboSelectGenerateLocations.Items.Add(entry.Key + " " + entry.Value.LocationName);
             }
+        }
+
+        private void btnGenerateLocationContactsBetweenDate_Click(object sender, RoutedEventArgs e)
+        {
+            bool isValidOperation = true;
+            try
+            {
+                DateTime dtStart = dtLocationStartDate.SelectedDate.Value;
+                DateTime dtEnd = dtLocationEndDate.SelectedDate.Value;
+
+                if (cboSelectGenerateLocations.SelectedItem == null ||
+                    dtStart == null ||
+                    dtEnd == null)
+                {
+                    MessageBox.Show("You cannot have empty fields. Please try again ");
+                    return;
+                }
+
+                String locationID = cboSelectGenerateLocations.SelectedItem.ToString().Split(' ')[0];
+
+                Console.WriteLine(dtStart);
+                Console.WriteLine(dtEnd);
+
+                HashSet<String> locationsQuery = trackAndTrace.generateLocationContactsBetweenDate(
+                    loader.loadLocationByID(locationID),
+                    dtStart,
+                    dtEnd
+                    );
+                populateLstBoxQueries(locationsQuery);
+            }
+            catch (InvalidOperationException ex)
+            {
+                isValidOperation = false;
+                Console.WriteLine(ex.Message);
+            }
+
+            if (!isValidOperation)
+            {
+                MessageBox.Show("You must specify date.");
+                return;
+            }
+
+            MessageBox.Show("Phones generated successfully.");
         }
     }
 }
