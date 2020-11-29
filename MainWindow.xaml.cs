@@ -98,7 +98,7 @@ namespace TrackAndTrace
                 return;
             }
 
-
+            populateComboBoxes();
             MessageBox.Show("Individual added successfully");
         }
 
@@ -148,6 +148,7 @@ namespace TrackAndTrace
                 return;
             }
 
+            populateComboBoxes();
             MessageBox.Show("Location added successfully.");
         }
 
@@ -184,7 +185,7 @@ namespace TrackAndTrace
                 return;
             }
 
-
+            populateComboBoxes();
             MessageBox.Show("Contact added successfully.");
         }
 
@@ -210,7 +211,7 @@ namespace TrackAndTrace
                 return;
             }
 
-
+            populateComboBoxes();
             MessageBox.Show("Visit added successfully.");
         }
 
@@ -289,6 +290,14 @@ namespace TrackAndTrace
         }
         private void populateComboBoxes()
         {
+            cboSelectVisitPerson.Items.Clear();
+            cboSelectContactPersonOne.Items.Clear();
+            cboSelectContactPersonTwo.Items.Clear();
+            cboSelectContactLocation.Items.Clear();
+            cboSelectVisitLocation.Items.Clear();
+            cboSelectGenerateLocations.Items.Clear();
+            cboSelectGenerateContactsPerson.Items.Clear();
+
             foreach (KeyValuePair<String, Person> entry in trackAndTrace.dataStorage.Users)
             {
                 cboSelectContactPersonOne.Items.Add(entry.Key + " " + entry.Value.FirstName + " " + entry.Value.LastName);
