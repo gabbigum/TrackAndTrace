@@ -4,7 +4,7 @@ This is a prototype for a track-and-trace system that allows users to keep track
 of individuals with whom they have come into contact with and places that they
 have been.
 
-Operations include:
+## Operations include:
   1.Add new individual
   2.Add new location
   3.Record the visit of an individual to a location
